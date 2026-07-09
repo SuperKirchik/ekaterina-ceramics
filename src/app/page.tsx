@@ -27,7 +27,7 @@ export default function Home() {
     <>
       <HeroDepth />
 
-      <section className="content-auto bg-graphite py-[clamp(3rem,4.2vw,4.6rem)] text-surface">
+      <section className="home-screen content-auto bg-graphite py-[clamp(3rem,4.2vw,4.6rem)] text-surface">
         <div className="container-page mx-auto grid max-w-[min(1080px,82vw)] grid-cols-[minmax(16rem,0.9fr)_1.1fr] items-center gap-[clamp(1.4rem,2.5vw,3rem)]">
           <img
             alt="Екатерина Дроздова"
@@ -58,7 +58,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="philosophy-bg-section content-auto py-[clamp(8rem,12vw,14rem)]">
+      <section className="home-screen philosophy-bg-section content-auto py-[clamp(8rem,12vw,14rem)]">
         <div className="container-page flex justify-end">
           <div className="w-[30vw] min-w-[18rem] max-w-[34rem]">
             <p className="text-[clamp(1rem,1.15vw,1.35rem)] uppercase tracking-[0.24em] text-white/75">
@@ -77,7 +77,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container-page content-auto py-[clamp(4rem,7vw,8rem)]">
+      <section className="home-screen container-page content-auto py-[clamp(4rem,7vw,8rem)]">
         <p className="font-serif text-graphite">Процесс</p>
         <div className="mt-[clamp(2rem,3.5vw,4rem)] grid grid-cols-3 gap-[clamp(1rem,2.2vw,2.8rem)]">
           {processSteps.map((step, index) => (
@@ -96,7 +96,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container-page content-auto py-[clamp(4rem,7vw,8rem)]">
+      <section className="home-screen container-page content-auto py-[clamp(4rem,7vw,8rem)]">
         <div className="mb-[clamp(2rem,3.5vw,4rem)] flex items-end justify-between gap-[clamp(1rem,2vw,2rem)]">
           <div>
             <p className="text-[clamp(1rem,1.3vw,1.6rem)] uppercase tracking-[0.24em] text-muted-text">

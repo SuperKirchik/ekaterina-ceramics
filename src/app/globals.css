@@ -281,6 +281,18 @@ h3.font-serif,
 }
 
 @media (min-width: 861px) {
+  .home-screen {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-bg-section,
+  .hero-bg-content {
+    min-height: 100svh;
+  }
+
   .hero-bg-section {
     background-image:
       linear-gradient(rgb(38 37 42 / 0.34), rgb(38 37 42 / 0.34)),

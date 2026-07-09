@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { HeroDepth } from "@/components/HeroDepth";
 import { getCollections } from "@/lib/db";
-import { fitClamp } from "@/lib/textFit";
 
 export const dynamic = "force-dynamic";
 
@@ -100,7 +99,7 @@ export default function Home() {
       <section className="home-screen container-page content-auto py-[clamp(4rem,7vw,8rem)]">
         <div className="mb-[clamp(2rem,3.5vw,4rem)] flex items-end justify-between gap-[clamp(1rem,2vw,2rem)]">
           <div>
-            <p className="font-serif leading-[0.98] text-graphite">
+            <p className="text-[clamp(1rem,1.3vw,1.6rem)] uppercase tracking-[0.24em] text-muted-text">
               Коллекции
             </p>
           </div>
@@ -126,10 +125,7 @@ export default function Home() {
               </div>
               <div className="pt-[clamp(1rem,1.6vw,1.7rem)]">
                 <div className="flex items-center justify-between">
-                  <h3
-                    className="collection-card-title min-w-0 font-serif text-graphite"
-                    style={fitClamp(collection.title, 1, 2.2, 2.85)}
-                  >
+                  <h3 className="collection-name-eyebrow min-w-0 text-graphite">
                     {collection.title}
                   </h3>
                   <ArrowUpRight size={18} />

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getCollections } from "@/lib/db";
+import { fitClamp } from "@/lib/textFit";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +23,10 @@ export default function CollectionsPage() {
             key={collection.slug}
           >
             <div className="col-span-6">
-              <h2 className="font-serif text-graphite">
+              <h2
+                className="font-serif text-graphite"
+                style={fitClamp(collection.title, 1.35, 2.2, 2.85)}
+              >
                 {collection.title}
               </h2>
               <p className="mt-[clamp(0.8rem,1.3vw,1.5rem)] max-w-[42rem] text-[clamp(0.9rem,1vw,1.25rem)] leading-[1.28] text-muted-text">

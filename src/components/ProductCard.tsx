@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Product, formatPrice } from "@/lib/data";
+import { fitClamp } from "@/lib/textFit";
 
 const singularCategories: Record<string, string> = {
   "светильники": "светильник",
@@ -16,6 +17,8 @@ function formatCategory(category: string) {
 }
 
 export function ProductCard({ product }: { product: Product }) {
+  const category = formatCategory(product.category);
+
   return (
     <article className="group min-w-0">
       <Link className="block min-w-0" href={`/product/${product.slug}`}>
@@ -31,10 +34,18 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="space-y-[clamp(0.4rem,0.7vw,0.8rem)] pt-[clamp(0.75rem,1.1vw,1.2rem)]">
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-[clamp(0.7rem,1vw,1.1rem)] gap-y-[clamp(0.35rem,0.6vw,0.7rem)]">
             <div className="min-w-0">
-              <h3 className="product-card-title font-serif leading-tight text-graphite">
+              <h3
+                className="product-card-title font-serif leading-tight text-graphite"
+                style={fitClamp(product.title, 1.05, 1.12, 1.55)}
+              >
                 {product.title}
               </h3>
-              <p className="product-card-category mt-[clamp(0.2rem,0.35vw,0.4rem)] text-[clamp(0.7rem,0.75vw,0.9rem)] text-muted-text">{formatCategory(product.category)}</p>
+              <p
+                className="product-card-category mt-[clamp(0.2rem,0.35vw,0.4rem)] text-muted-text"
+                style={fitClamp(category, 1.24, 1.36, 1.64)}
+              >
+                {category}
+              </p>
             </div>
             <p className="whitespace-nowrap pt-[clamp(0.15rem,0.3vw,0.35rem)] text-[clamp(0.7rem,0.8vw,0.95rem)] font-medium text-graphite">
               {formatPrice(product.price)}

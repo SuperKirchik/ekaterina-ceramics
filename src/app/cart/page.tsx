@@ -6,6 +6,7 @@ import { Suspense, useEffect } from "react";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/data";
+import { fitClamp } from "@/lib/textFit";
 
 export default function CartPage() {
   return (
@@ -56,7 +57,10 @@ function CartContent() {
                   src={product.image}
                 />
                 <div>
-                  <h2 className="font-serif text-3xl text-graphite">
+                  <h2
+                    className="font-serif text-3xl text-graphite"
+                    style={fitClamp(product.title, 1.35, 2.2, 2.85)}
+                  >
                     {product.title}
                   </h2>
                   <p className="mt-2 text-sm text-muted-text">{product.category}</p>

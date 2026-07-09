@@ -4,6 +4,7 @@ import { ProductGallery } from "@/components/ProductGallery";
 import { ProductPurchaseControls } from "@/components/ProductPurchaseControls";
 import { formatPrice, statuses } from "@/lib/data";
 import { getProductBySlug, getProducts } from "@/lib/db";
+import { fitClamp } from "@/lib/textFit";
 
 export const dynamic = "force-dynamic";
 
@@ -66,7 +67,10 @@ export default async function ProductPage({
         <ProductGallery images={images} title={product.title} />
 
         <aside className="sticky top-[clamp(1rem,2vw,2.5rem)] self-start pt-[clamp(0.2rem,0.4vw,0.4rem)]">
-          <h1 className="font-serif leading-tight text-graphite">
+          <h1
+            className="font-serif leading-tight text-graphite"
+            style={fitClamp(product.title, 1.35, 2.2, 2.85)}
+          >
             {product.title}
           </h1>
           <p className="mt-7 text-xl tracking-[0.12em] text-graphite">
@@ -125,7 +129,10 @@ export default async function ProductPage({
                   />
                 </div>
                 <div className="mt-4">
-                  <p className="text-[clamp(1.24rem,1.36vw,1.64rem)] leading-[1.08] text-muted-text">
+                  <p
+                    className="leading-[1.08] text-muted-text"
+                    style={fitClamp(formatCategory(entry.category), 1.24, 1.36, 1.64)}
+                  >
                     {formatCategory(entry.category)}
                   </p>
                 </div>

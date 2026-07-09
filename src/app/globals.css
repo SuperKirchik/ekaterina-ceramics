@@ -35,6 +35,9 @@ body {
   color: var(--foreground);
   font-family: var(--font-forum), Georgia, serif;
   line-height: 1.18;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 ::selection {
@@ -46,6 +49,12 @@ img {
   max-width: 100%;
 }
 
+body :where(h1, h2, h3, h4, p, a, span, dt, dd, li, button) {
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
 h1,
 h2,
 h3,
@@ -53,7 +62,9 @@ h3,
   font-family: var(--font-forum), Georgia, serif;
   font-weight: 400;
   line-height: 0.95;
-  overflow-wrap: anywhere;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
   text-transform: uppercase;
 }
 
@@ -142,7 +153,8 @@ h3.font-serif,
   max-width: 100%;
   font-size: clamp(1rem, 12cqw, 2.85rem);
   line-height: 0.92;
-  overflow-wrap: anywhere;
+  hyphens: none;
+  overflow-wrap: normal;
   word-break: normal;
 }
 
@@ -157,7 +169,9 @@ h3.font-serif,
 .catalog-products .product-card-category {
   font-size: clamp(1.24rem, 1.36vw, 1.64rem);
   line-height: 1.08;
-  overflow-wrap: anywhere;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .thumbnail-strip {

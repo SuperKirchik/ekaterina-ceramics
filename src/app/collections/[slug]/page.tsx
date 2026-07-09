@@ -5,6 +5,7 @@ import {
   getCollections,
   getProducts,
 } from "@/lib/db";
+import { fitClamp } from "@/lib/textFit";
 
 export const dynamic = "force-dynamic";
 
@@ -44,7 +45,10 @@ export default async function CollectionPage({
 
   return (
     <section className="container-page py-[clamp(3.5rem,5vw,6rem)]">
-      <h1 className="mx-auto max-w-[64rem] text-center font-serif text-graphite">
+      <h1
+        className="mx-auto max-w-[64rem] text-center font-serif text-graphite"
+        style={fitClamp(collection.title, 1.35, 2.2, 2.85)}
+      >
         {collection.title}
       </h1>
 

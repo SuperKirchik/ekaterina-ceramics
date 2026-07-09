@@ -293,8 +293,15 @@ h3.font-serif,
     min-height: 100svh;
   }
 
+  .philosophy-bg-section .container-page {
+    max-width: none;
+    width: 100%;
+    padding-right: clamp(5rem, 9vw, 12rem);
+  }
+
   .philosophy-copy {
-    transform: translateX(clamp(2rem, 5vw, 6rem));
+    margin-left: auto;
+    transform: none;
   }
 
   .hero-bg-section {
@@ -307,6 +314,7 @@ h3.font-serif,
     background-image:
       linear-gradient(rgb(38 37 42 / 0.34), rgb(38 37 42 / 0.34)),
       url("/philosophy-bg.png");
+    background-position: left center;
   }
 
   .hero-bg-section::before,

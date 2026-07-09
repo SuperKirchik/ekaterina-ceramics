@@ -44,14 +44,14 @@ export function ProductCard({ product }: { product: Product }) {
               >
                 {product.title}
               </h3>
+              <p className="product-card-description mt-[clamp(0.35rem,0.55vw,0.65rem)] line-clamp-2 text-[clamp(0.9rem,1vw,1.18rem)] leading-[1.25] text-muted-text">
+                {product.shortDescription}
+              </p>
             </div>
             <p className="product-card-price whitespace-nowrap pt-[clamp(0.15rem,0.3vw,0.35rem)] font-medium text-graphite">
               {formatPrice(product.price)}
             </p>
           </div>
-          <p className="product-card-description mt-[clamp(0.35rem,0.55vw,0.65rem)] line-clamp-2 text-[clamp(0.9rem,1vw,1.18rem)] leading-[1.25] text-muted-text">
-            {product.shortDescription}
-          </p>
         </div>
       </Link>
     </article>

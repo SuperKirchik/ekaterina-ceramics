@@ -188,11 +188,17 @@ h3.font-serif,
 }
 
 .catalog-products .product-card-description {
-  margin-top: clamp(0.08rem, 0.16vw, 0.2rem);
+  margin-top: 0;
+}
+
+.catalog-products .product-card-price {
+  padding-top: 0;
+  line-height: 1.05;
 }
 
 .product-card-slide {
   opacity: 0;
+  will-change: opacity, transform;
 }
 
 .product-card-slide:first-child {
@@ -220,23 +226,28 @@ h3.font-serif,
   }
 
   .group:hover .product-card-slide:not(:first-child) {
-    animation: product-slide-show calc(var(--slide-count) * 1.65s) steps(1, end) infinite;
-    animation-delay: calc((var(--slide-index) - 1) * 1.65s);
+    animation: product-slide-show calc(var(--slide-count) * 1.9s) ease-in-out infinite;
+    animation-delay: calc((var(--slide-index) - 1) * 1.9s);
   }
 
   .group:hover .product-card-story::before {
-    animation: product-story-fill calc(var(--slide-count) * 1.65s) infinite;
-    animation-delay: calc(var(--slide-index) * 1.65s);
+    animation: product-story-fill calc(var(--slide-count) * 1.9s) linear infinite;
+    animation-delay: calc(var(--slide-index) * 1.9s);
   }
 }
 
 @keyframes product-slide-show {
-  0% {
+  0%,
+  100% {
+    opacity: 0;
+    z-index: 1;
+  }
+  5%,
+  28% {
     opacity: 1;
     z-index: 2;
   }
-  30%,
-  100% {
+  35% {
     opacity: 0;
     z-index: 1;
   }
@@ -245,13 +256,19 @@ h3.font-serif,
 @keyframes product-story-fill {
   0% {
     transform: scaleX(0);
+    opacity: 0.55;
+  }
+  5% {
+    opacity: 1;
   }
   28% {
     transform: scaleX(1);
+    opacity: 1;
   }
-  31%,
+  35%,
   100% {
-    transform: scaleX(0);
+    transform: scaleX(1);
+    opacity: 0.55;
   }
 }
 

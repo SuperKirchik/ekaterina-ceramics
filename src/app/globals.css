@@ -232,6 +232,9 @@ h3.font-serif,
   width: 100vw;
   margin-inline: calc(50% - 50vw);
   background: var(--background);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 .hero-bg-section,
@@ -277,6 +280,27 @@ h3.font-serif,
   background-image: url("/philosophy-bg.png");
 }
 
+@media (min-width: 861px) {
+  .hero-bg-section {
+    background-image:
+      linear-gradient(rgb(38 37 42 / 0.34), rgb(38 37 42 / 0.34)),
+      url("/hero-main-5417.jpg");
+  }
+
+  .philosophy-bg-section {
+    background-image:
+      linear-gradient(rgb(38 37 42 / 0.34), rgb(38 37 42 / 0.34)),
+      url("/philosophy-bg.png");
+  }
+
+  .hero-bg-section::before,
+  .philosophy-bg-section::before,
+  .hero-bg-section::after,
+  .philosophy-bg-section::after {
+    display: none;
+  }
+}
+
 @supports (animation-timeline: view()) {
   .hero-bg-section::before,
   .philosophy-bg-section::before {
@@ -296,6 +320,12 @@ h3.font-serif,
 }
 
 @media (max-width: 860px) {
+  .hero-bg-section,
+  .philosophy-bg-section {
+    background-image: none;
+    background-attachment: scroll;
+  }
+
   .hero-bg-section,
   .hero-bg-content {
     min-height: clamp(24rem, 57vh, 43rem);

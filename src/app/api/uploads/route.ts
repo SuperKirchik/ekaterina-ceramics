@@ -57,12 +57,12 @@ export async function POST(request: Request) {
     );
   }
 
-  const uploadDir = path.join(process.cwd(), "public", "uploads");
+  const uploadDir = path.join(process.cwd(), "data", "uploads");
   const fileName = `${randomUUID()}${extension}`;
   const filePath = path.join(uploadDir, fileName);
 
   await mkdir(uploadDir, { recursive: true });
   await writeFile(filePath, Buffer.from(await file.arrayBuffer()));
 
-  return NextResponse.json({ url: `/uploads/${fileName}` }, { status: 201 });
+  return NextResponse.json({ url: `/media/uploads/${fileName}` }, { status: 201 });
 }

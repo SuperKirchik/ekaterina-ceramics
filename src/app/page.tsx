@@ -115,7 +115,7 @@ export default function Home() {
               href={`/collections/${collection.slug}`}
               key={collection.slug}
             >
-              <div className="aspect-[3/4] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
                 <img
                   alt={collection.title}
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-105"

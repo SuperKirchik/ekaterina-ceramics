@@ -62,7 +62,7 @@ export default async function ProductPage({
 
           <ProductPurchaseControls product={product} />
 
-          <dl className="mt-9 space-y-1.5 text-sm leading-5">
+          <dl className="mt-9 space-y-1.5 text-base leading-[1.28]">
             {[
               ["Размер", product.dimensions],
               ["Материал", product.material],

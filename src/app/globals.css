@@ -183,6 +183,14 @@ h3.font-serif,
   word-break: normal;
 }
 
+.catalog-products .product-card-meta {
+  padding-top: clamp(0.12rem, 0.22vw, 0.28rem);
+}
+
+.catalog-products .product-card-description {
+  margin-top: clamp(0.08rem, 0.16vw, 0.2rem);
+}
+
 .product-card-slide {
   opacity: 0;
 }

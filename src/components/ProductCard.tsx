@@ -35,7 +35,7 @@ export function ProductCard({ product }: { product: Product }) {
             </div>
           )}
         </div>
-        <div className="pt-[clamp(0.35rem,0.55vw,0.65rem)]">
+        <div className="product-card-meta pt-[clamp(0.35rem,0.55vw,0.65rem)]">
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-[clamp(0.7rem,1vw,1.1rem)] gap-y-[clamp(0.35rem,0.6vw,0.7rem)]">
             <div className="min-w-0">
               <h3
@@ -49,7 +49,7 @@ export function ProductCard({ product }: { product: Product }) {
               {formatPrice(product.price)}
             </p>
           </div>
-          <p className="mt-[clamp(0.35rem,0.55vw,0.65rem)] line-clamp-2 text-[clamp(0.9rem,1vw,1.18rem)] leading-[1.25] text-muted-text">
+          <p className="product-card-description mt-[clamp(0.35rem,0.55vw,0.65rem)] line-clamp-2 text-[clamp(0.9rem,1vw,1.18rem)] leading-[1.25] text-muted-text">
             {product.shortDescription}
           </p>
         </div>

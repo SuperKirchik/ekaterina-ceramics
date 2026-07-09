@@ -4,10 +4,12 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useState,
   useSyncExternalStore,
 } from "react";
-import { Product, products } from "./data";
+import type { Product } from "./data";
 
 type CartItem = {
   productId: string;
@@ -65,6 +67,24 @@ function saveCart(items: CartItem[]) {
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const snapshot = useSyncExternalStore(subscribeCart, getCartSnapshot, () => "[]");
   const items = useMemo(() => parseCartSnapshot(snapshot), [snapshot]);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    let ignore = false;
+
+    fetch("/api/public/products", { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : []))
+      .then((nextProducts: Product[]) => {
+        if (!ignore) setProducts(nextProducts);
+      })
+      .catch(() => {
+        if (!ignore) setProducts([]);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   const updateItems = useCallback((updater: (current: CartItem[]) => CartItem[]) => {
     saveCart(updater(items));

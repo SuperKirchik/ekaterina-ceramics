@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/lib/cart";
-import { formatPrice, products } from "@/lib/data";
+import { formatPrice } from "@/lib/data";
 
 export default function CartPage() {
   return (
@@ -18,19 +18,22 @@ export default function CartPage() {
 function CartContent() {
   const searchParams = useSearchParams();
   const addProductId = searchParams.get("add");
-  const { detailedItems, removeItem, setQuantity } = useCart();
-  const addedProduct = products.find(
-    (product) =>
-      product.id === addProductId &&
-      !detailedItems.some((item) => item.product.id === addProductId),
-  );
-  const displayItems = addedProduct
-    ? [{ product: addedProduct, quantity: 1 }, ...detailedItems]
-    : detailedItems;
+  const { addItem, detailedItems, removeItem, setQuantity } = useCart();
+  const displayItems = detailedItems;
   const total = displayItems.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
     0,
   );
+
+  useEffect(() => {
+    if (!addProductId) return;
+
+    const alreadyAdded = detailedItems.some(
+      (item) => item.product.id === addProductId,
+    );
+
+    if (!alreadyAdded) addItem(addProductId);
+  }, [addItem, addProductId, detailedItems]);
 
   return (
     <section className="container-page py-[clamp(3.5rem,5vw,6rem)]">

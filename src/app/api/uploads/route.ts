@@ -8,22 +8,16 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const allowedTypes = new Set([
-  "image/avif",
-  "image/gif",
   "image/jpg",
   "image/jpeg",
   "image/pjpeg",
   "image/png",
-  "image/webp",
 ]);
 
 const allowedExtensions = new Set([
-  ".avif",
-  ".gif",
   ".jpeg",
   ".jpg",
   ".png",
-  ".webp",
 ]);
 
 function extensionFromFile(file: File) {
@@ -33,9 +27,6 @@ function extensionFromFile(file: File) {
   if (allowedExtensions.has(fromName)) return fromName;
   if (file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/pjpeg") return ".jpg";
   if (file.type === "image/png") return ".png";
-  if (file.type === "image/webp") return ".webp";
-  if (file.type === "image/avif") return ".avif";
-  if (file.type === "image/gif") return ".gif";
 
   return "";
 }
@@ -54,7 +45,7 @@ export async function POST(request: Request) {
 
   if (!allowedTypes.has(file.type) && !allowedExtensions.has(path.extname(file.name).toLowerCase())) {
     return NextResponse.json(
-      { message: "Only JPG, JPEG, PNG, WEBP, GIF and AVIF images are allowed" },
+      { message: "Only JPG, JPEG and PNG images are allowed" },
       { status: 400 },
     );
   }

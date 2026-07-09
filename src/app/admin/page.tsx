@@ -139,7 +139,7 @@ function ImageUploadField({
               )}
               {value ? "Заменить" : "Загрузить"}
               <input
-                accept=".jpg,.jpeg,.png,.webp,.gif,.avif,image/jpeg,image/png,image/webp,image/gif,image/avif"
+                accept=".jpg,.jpeg,.png,image/jpeg,image/png"
                 className="sr-only"
                 disabled={uploading}
                 type="file"
@@ -247,8 +247,8 @@ export default function AdminPage() {
 
     setLoading(true);
     Promise.all([
-      fetch("/api/products").then((response) => response.json()),
-      fetch("/api/collections").then((response) => response.json()),
+      fetch("/api/products", { cache: "no-store" }).then((response) => response.json()),
+      fetch("/api/collections", { cache: "no-store" }).then((response) => response.json()),
     ])
       .then(([products, loadedCollections]: [AdminProduct[], AdminCollection[]]) => {
         setItems(products);
@@ -310,7 +310,10 @@ export default function AdminPage() {
     );
   }
 
-  async function persistSelectedPatch(patch: Partial<AdminProduct>) {
+  async function persistSelectedPatch(
+    patch: Partial<AdminProduct>,
+    successMessage = "Изменения сохранены.",
+  ) {
     if (!selected) return;
 
     const next = { ...selected, ...patch };
@@ -327,6 +330,13 @@ export default function AdminPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(next),
     });
+
+    if (!response.ok) {
+      setMessage("Не получилось сохранить изменения.");
+      setRemovingImage(false);
+      return;
+    }
+
     const saved = (await response.json()) as AdminProduct;
 
     setItems((current) =>
@@ -383,6 +393,13 @@ export default function AdminPage() {
         body: JSON.stringify(selected),
       },
     );
+
+    if (!response.ok) {
+      setMessage("Не получилось сохранить товар.");
+      setSaving(false);
+      return;
+    }
+
     const saved = (await response.json()) as AdminProduct;
 
     setItems((current) =>
@@ -419,6 +436,13 @@ export default function AdminPage() {
         body: JSON.stringify(selectedCollection),
       },
     );
+
+    if (!response.ok) {
+      setMessage("Не получилось сохранить коллекцию.");
+      setSaving(false);
+      return;
+    }
+
     const saved = (await response.json()) as AdminCollection;
 
     setCollections((current) =>
@@ -791,7 +815,12 @@ export default function AdminPage() {
                 label="Главное фото"
                 removing={removingImage}
                 value={selected.image}
-                onChange={(image) => updateSelected({ image })}
+                onChange={(image) => {
+                  updateSelected({ image });
+                  if (selected.id) {
+                    void persistSelectedPatch({ image }, "Фото загружено и сохранено.");
+                  }
+                }}
                 onRemove={() => void persistSelectedPatch({ image: "" })}
               />
               <label className="text-sm text-muted-text md:col-span-2">
@@ -835,7 +864,7 @@ export default function AdminPage() {
                     )}
                     Добавить фото
                     <input
-                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,image/jpeg,image/png,image/webp,image/gif,image/avif"
+                      accept=".jpg,.jpeg,.png,image/jpeg,image/png"
                       className="sr-only"
                       disabled={uploadingGallery}
                       multiple
@@ -848,9 +877,14 @@ export default function AdminPage() {
                         setUploadingGallery(true);
                         try {
                           const uploaded = await Promise.all(files.map(uploadImage));
-                          updateSelected({
-                            gallery: [...selected.gallery, ...uploaded],
-                          });
+                          const gallery = [...selected.gallery, ...uploaded];
+                          updateSelected({ gallery });
+                          if (selected.id) {
+                            await persistSelectedPatch(
+                              { gallery },
+                              "Галерея загружена и сохранена.",
+                            );
+                          }
                         } finally {
                           setUploadingGallery(false);
                         }
@@ -994,7 +1028,12 @@ export default function AdminPage() {
                 label="Обложка коллекции"
                 removing={removingImage}
                 value={selectedCollection.image}
-                onChange={(image) => updateSelectedCollection({ image })}
+                onChange={(image) => {
+                  updateSelectedCollection({ image });
+                  if (selectedCollection.id) {
+                    void persistSelectedCollectionPatch({ image });
+                  }
+                }}
                 onRemove={() =>
                   void persistSelectedCollectionPatch({ image: "" })
                 }

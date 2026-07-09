@@ -111,7 +111,7 @@ export function CatalogClient({ categories, products }: CatalogClientProps) {
           <div className="mt-7">{categoryList}</div>
         </aside>
 
-        <div className="catalog-products grid grid-cols-4 gap-x-[clamp(0.8rem,1.15vw,1.2rem)] gap-y-[clamp(1.4rem,2vw,2.4rem)]">
+        <div className="catalog-products grid grid-cols-2 gap-x-[clamp(1rem,1.8vw,2rem)] gap-y-[clamp(2rem,3vw,3.5rem)]">
           {visibleProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

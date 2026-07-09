@@ -5,7 +5,6 @@ import {
   getCollections,
   getProducts,
 } from "@/lib/db";
-import { fitClamp } from "@/lib/textFit";
 
 export const dynamic = "force-dynamic";
 
@@ -45,16 +44,13 @@ export default async function CollectionPage({
 
   return (
     <section className="container-page py-[clamp(3.5rem,5vw,6rem)]">
-      <h1
-        className="mx-auto max-w-[64rem] text-center font-serif text-graphite"
-        style={fitClamp(collection.title, 1.35, 2.2, 2.85)}
-      >
+      <h1 className="collection-name-eyebrow text-left text-graphite">
         {collection.title}
       </h1>
 
       <div className="mt-12">
         {products.length > 0 ? (
-          <div className="catalog-products grid grid-cols-4 gap-x-[clamp(0.8rem,1.15vw,1.2rem)] gap-y-[clamp(1.4rem,2vw,2.4rem)]">
+          <div className="catalog-products grid grid-cols-2 gap-x-[clamp(1rem,1.8vw,2rem)] gap-y-[clamp(2rem,3vw,3.5rem)]">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

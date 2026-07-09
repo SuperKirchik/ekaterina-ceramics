@@ -22,7 +22,7 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
   }
 
   return (
-    <div className="mx-auto max-w-[clamp(18rem,31vw,38rem)]">
+    <div className="product-gallery mx-auto w-full max-w-[clamp(18rem,31vw,38rem)]">
       <div className="overflow-hidden">
         <img
           alt={title}

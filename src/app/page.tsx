@@ -5,21 +5,6 @@ import { getCollections } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
-const processSteps = [
-  {
-    title: "Форма",
-    text: "Процесс создания формы бывает разным. Это может быть точное воплощение эскиза или лишь частичное следование заданному вектору, направление которому задает мастер, а само движение и детали диктует материал. Форма может рождаться на гончарном круге или быть более живой - созданной вручную, с помощью лепки. Продолжительность этого этапа зависит от сложности и размера работы и может занимать от одного до четырех дней.",
-  },
-  {
-    title: "Время",
-    text: "Когда форма определена и глина застыла в том самом мгновении, начинается медленная, бережная сушка с постепенным доведением формы до совершенства. Каждый этап этого процесса возможен лишь при определенном состоянии керамической массы, поэтому он требует времени - от четырех до семи дней.",
-  },
-  {
-    title: "Огонь",
-    text: "После полного высыхания форма отправляется на первый обжиг при 950 °C. Это предварительная подготовка к финальному, высокотемпературному глазурному обжигу. Затем керамика покрывается глазурью и проходит второй обжиг при 1200 °C. После этого работа обретает завершенный вид, твердость и каменную прочность.",
-  },
-];
-
 export default function Home() {
   const collections = getCollections();
 
@@ -74,25 +59,6 @@ export default function Home() {
               ценности простоты.
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="home-screen container-page content-auto py-[clamp(4rem,7vw,8rem)]">
-        <p className="font-serif text-graphite">Процесс</p>
-        <div className="mt-[clamp(2rem,3.5vw,4rem)] grid grid-cols-3 gap-[clamp(1rem,2.2vw,2.8rem)]">
-          {processSteps.map((step, index) => (
-            <div className="border-t border-border pt-[clamp(1.2rem,2vw,2.4rem)]" key={step.title}>
-              <span className="text-[clamp(1rem,1.25vw,1.55rem)] leading-none text-muted-text">
-                0{index + 1}
-              </span>
-              <h3 className="mt-[clamp(1rem,1.6vw,1.8rem)] font-serif text-graphite">
-                {step.title}
-              </h3>
-              <p className="mt-[clamp(1rem,1.5vw,1.7rem)] text-[clamp(0.9rem,1vw,1.2rem)] leading-[1.32] text-muted-text">
-                {step.text}
-              </p>
-            </div>
-          ))}
         </div>
       </section>
 

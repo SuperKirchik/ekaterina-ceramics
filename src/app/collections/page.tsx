@@ -15,13 +15,13 @@ export default function CollectionsPage() {
     <section className="container-page py-[clamp(3.5rem,5vw,6rem)]">
       <p className="text-sm uppercase tracking-[0.24em] text-muted-text">Коллекции</p>
       <div className="mt-10">
-        {collections.map((collection) => (
+        {collections.map((collection, index) => (
           <Link
             className="content-auto grid grid-cols-12 items-center gap-[clamp(1.5rem,2.8vw,3.5rem)] border-t border-white/55 py-[clamp(2.5rem,4vw,5rem)] first:border-t-0 first:pt-0"
             href={`/collections/${collection.slug}`}
             key={collection.slug}
           >
-            <div className="col-span-6">
+            <div className={`col-span-6 ${index % 2 === 1 ? "order-2" : ""}`}>
               <h2 className="collection-name-eyebrow text-graphite">
                 {collection.title}
               </h2>
@@ -29,10 +29,12 @@ export default function CollectionsPage() {
                 {collection.description}
               </p>
             </div>
-            <div className="col-span-6">
+            <div className={`col-span-6 ${index % 2 === 1 ? "order-1" : ""}`}>
               <img
                 alt={collection.title}
-                className="ml-auto aspect-[4/3] w-full max-w-[clamp(18rem,24vw,32rem)] object-cover"
+                className={`aspect-[4/3] w-full max-w-[clamp(18rem,24vw,32rem)] object-cover ${
+                  index % 2 === 1 ? "mr-auto" : "ml-auto"
+                }`}
                 decoding="async"
                 loading="lazy"
                 src={collection.image || "/brand-logo.png"}

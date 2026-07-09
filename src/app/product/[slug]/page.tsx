@@ -63,10 +63,10 @@ export default async function ProductPage({
 
   return (
     <section className="container-page py-[clamp(2.2rem,3.5vw,4rem)]">
-      <div className="grid grid-cols-[minmax(16rem,31rem)_minmax(22rem,40rem)] justify-center gap-[clamp(1.3rem,2.5vw,3.5rem)]">
+      <div className="product-page-grid grid grid-cols-[minmax(16rem,31rem)_minmax(22rem,40rem)] justify-center gap-[clamp(0.9rem,1.8vw,2.6rem)]">
         <ProductGallery images={images} title={product.title} />
 
-        <aside className="sticky top-[clamp(1rem,2vw,2.5rem)] self-start pt-[clamp(0.2rem,0.4vw,0.4rem)]">
+        <aside className="product-page-info sticky top-[clamp(1rem,2vw,2.5rem)] self-start">
           <p className="text-base leading-[1.28] text-muted-text">
             {product.description}
           </p>

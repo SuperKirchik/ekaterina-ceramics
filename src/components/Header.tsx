@@ -22,7 +22,7 @@ export function Header() {
     href === "/" ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header className="relative z-50 bg-transparent">
+    <header className="sticky top-0 z-50 bg-background/70 backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-[clamp(0.65rem,2.2vw,2.5rem)] px-[clamp(0.9rem,2.8vw,2.5rem)] py-[clamp(0.75rem,1.1vw,1rem)]">
         <Link className="block shrink-0" href="/">
           <img

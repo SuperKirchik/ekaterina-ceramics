@@ -100,7 +100,7 @@ export default function Home() {
       <section className="home-screen container-page content-auto py-[clamp(4rem,7vw,8rem)]">
         <div className="mb-[clamp(2rem,3.5vw,4rem)] flex items-end justify-between gap-[clamp(1rem,2vw,2rem)]">
           <div>
-            <p className="text-[clamp(1rem,1.3vw,1.6rem)] uppercase tracking-[0.24em] text-muted-text">
+            <p className="font-serif leading-[0.98] text-graphite">
               Коллекции
             </p>
           </div>

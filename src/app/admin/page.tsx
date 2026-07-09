@@ -139,7 +139,7 @@ function ImageUploadField({
               )}
               {value ? "Заменить" : "Загрузить"}
               <input
-                accept="image/*"
+                accept=".jpg,.jpeg,.png,.webp,.gif,.avif,image/jpeg,image/png,image/webp,image/gif,image/avif"
                 className="sr-only"
                 disabled={uploading}
                 type="file"
@@ -835,7 +835,7 @@ export default function AdminPage() {
                     )}
                     Добавить фото
                     <input
-                      accept="image/*"
+                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,image/jpeg,image/png,image/webp,image/gif,image/avif"
                       className="sr-only"
                       disabled={uploadingGallery}
                       multiple

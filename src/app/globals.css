@@ -293,6 +293,10 @@ h3.font-serif,
     min-height: 100svh;
   }
 
+  .philosophy-copy {
+    transform: translateX(clamp(2rem, 5vw, 6rem));
+  }
+
   .hero-bg-section {
     background-image:
       linear-gradient(rgb(38 37 42 / 0.34), rgb(38 37 42 / 0.34)),

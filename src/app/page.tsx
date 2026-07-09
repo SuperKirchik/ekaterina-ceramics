@@ -60,7 +60,7 @@ export default function Home() {
 
       <section className="home-screen philosophy-bg-section content-auto py-[clamp(8rem,12vw,14rem)]">
         <div className="container-page flex justify-end">
-          <div className="w-[30vw] min-w-[18rem] max-w-[34rem]">
+          <div className="philosophy-copy w-[30vw] min-w-[18rem] max-w-[34rem]">
             <p className="text-[clamp(1rem,1.15vw,1.35rem)] uppercase tracking-[0.24em] text-white/75">
               Философия
             </p>

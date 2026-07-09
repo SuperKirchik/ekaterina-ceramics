@@ -189,6 +189,7 @@ h3.font-serif,
 
 .product-card-slide:first-child {
   opacity: 1;
+  z-index: 1;
 }
 
 .product-card-price {
@@ -210,9 +211,9 @@ h3.font-serif,
     display: flex;
   }
 
-  .group:hover .product-card-slide {
-    animation: product-slide-show calc(var(--slide-count) * 1.65s) infinite;
-    animation-delay: calc(var(--slide-index) * 1.65s);
+  .group:hover .product-card-slide:not(:first-child) {
+    animation: product-slide-show calc(var(--slide-count) * 1.65s) steps(1, end) infinite;
+    animation-delay: calc((var(--slide-index) - 1) * 1.65s);
   }
 
   .group:hover .product-card-story::before {
@@ -222,16 +223,14 @@ h3.font-serif,
 }
 
 @keyframes product-slide-show {
-  0%,
+  0% {
+    opacity: 1;
+    z-index: 2;
+  }
+  30%,
   100% {
     opacity: 0;
-  }
-  3%,
-  28% {
-    opacity: 1;
-  }
-  31% {
-    opacity: 0;
+    z-index: 1;
   }
 }
 
@@ -329,6 +328,23 @@ h3.font-serif,
 
   .product-gallery .thumbnail-strip {
     justify-content: flex-start;
+  }
+
+  .product-gallery .thumbnail-strip img {
+    width: clamp(5.4rem, 18vw, 7.5rem);
+  }
+
+  .product-page-description {
+    font-size: clamp(1.25rem, 4vw, 1.65rem);
+    line-height: 1.22;
+  }
+
+  .related-products {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .related-products p {
+    font-size: clamp(1.55rem, 4.8vw, 2rem);
   }
 }
 

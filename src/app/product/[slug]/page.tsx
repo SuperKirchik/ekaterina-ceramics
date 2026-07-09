@@ -4,22 +4,8 @@ import { ProductGallery } from "@/components/ProductGallery";
 import { ProductPurchaseControls } from "@/components/ProductPurchaseControls";
 import { formatPrice } from "@/lib/data";
 import { getProductBySlug, getProducts } from "@/lib/db";
-import { fitClamp } from "@/lib/textFit";
 
 export const dynamic = "force-dynamic";
-
-const singularCategories: Record<string, string> = {
-  "светильники": "светильник",
-  "вазы": "ваза",
-  "блюда": "блюдо",
-  "арт-объекты": "арт-объект",
-  "диффузоры": "диффузор",
-  "ароматы": "аромат",
-};
-
-function formatCategory(category: string) {
-  return singularCategories[category.toLowerCase()] ?? category;
-}
 
 export function generateStaticParams() {
   return getProducts().map((product) => ({ slug: product.slug }));
@@ -67,7 +53,7 @@ export default async function ProductPage({
         <ProductGallery images={images} title={product.title} />
 
         <aside className="product-page-info sticky top-[clamp(1rem,2vw,2.5rem)] self-start">
-          <p className="text-base leading-[1.28] text-muted-text">
+          <p className="product-page-description text-base leading-[1.28] text-muted-text">
             {product.description}
           </p>
           <p className="mt-7 text-xl tracking-[0.12em] text-graphite">
@@ -102,7 +88,7 @@ export default async function ProductPage({
             <div className="mx-auto mt-5 h-px w-12 bg-white/70" />
           </div>
 
-          <div className="mt-[clamp(2rem,3vw,3.5rem)] grid grid-cols-6 gap-x-[clamp(0.8rem,1.35vw,1.4rem)] gap-y-[clamp(1.6rem,2.5vw,3rem)]">
+          <div className="related-products mt-[clamp(2rem,3vw,3.5rem)] grid grid-cols-4 gap-x-[clamp(1rem,1.8vw,2rem)] gap-y-[clamp(1.6rem,2.5vw,3rem)]">
             {collectionProducts.map((entry) => (
               <Link
                 className="group block min-w-0"
@@ -118,14 +104,9 @@ export default async function ProductPage({
                     src={entry.image || "/brand-logo.png"}
                   />
                 </div>
-                <div className="mt-4">
-                  <p
-                    className="leading-[1.08] text-muted-text"
-                    style={fitClamp(formatCategory(entry.category), 1.24, 1.36, 1.64)}
-                  >
-                    {formatCategory(entry.category)}
-                  </p>
-                </div>
+                <p className="mt-[clamp(0.6rem,0.9vw,1rem)] line-clamp-2 text-[clamp(1.25rem,1.5vw,1.85rem)] leading-[1.16] text-muted-text">
+                  {entry.shortDescription}
+                </p>
               </Link>
             ))}
           </div>

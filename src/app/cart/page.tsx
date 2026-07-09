@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/data";
 import { fitClamp } from "@/lib/textFit";
@@ -19,10 +19,10 @@ export default function CartPage() {
 function CartContent() {
   const searchParams = useSearchParams();
   const addProductId = searchParams.get("add");
-  const { addItem, detailedItems, removeItem, setQuantity } = useCart();
+  const { addItem, detailedItems, removeItem } = useCart();
   const displayItems = detailedItems;
   const total = displayItems.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
+    (sum, item) => sum + item.product.price,
     0,
   );
 
@@ -49,7 +49,7 @@ function CartContent() {
       ) : (
         <div className="mt-[clamp(2rem,3.5vw,4rem)] grid grid-cols-[1fr_minmax(22rem,28rem)] gap-[clamp(1.5rem,2.6vw,3rem)]">
           <div className="space-y-4">
-            {displayItems.map(({ product, quantity }) => (
+            {displayItems.map(({ product }) => (
               <article className="grid grid-cols-[minmax(8rem,11rem)_1fr_auto] gap-[clamp(0.9rem,1.4vw,1.6rem)] rounded-lg bg-surface p-[clamp(0.9rem,1.3vw,1.4rem)]" key={product.id}>
                 <img
                   alt={product.title}
@@ -69,15 +69,6 @@ function CartContent() {
                   </p>
                 </div>
                 <div className="flex flex-col items-end justify-between gap-[clamp(0.7rem,1vw,1.1rem)]">
-                  <div className="inline-flex items-center rounded-full border border-border">
-                    <button className="p-3" onClick={() => setQuantity(product.id, quantity - 1)} type="button">
-                      <Minus size={15} />
-                    </button>
-                    <span className="min-w-8 text-center text-sm">{quantity}</span>
-                    <button className="p-3" onClick={() => setQuantity(product.id, quantity + 1)} type="button">
-                      <Plus size={15} />
-                    </button>
-                  </div>
                   <button className="inline-flex items-center gap-2 text-sm text-muted-text hover:text-clay" onClick={() => removeItem(product.id)} type="button">
                     <Trash2 size={16} /> Удалить
                   </button>

@@ -59,12 +59,12 @@ export default function CheckoutPage() {
                   address: formData.get("address"),
                   comment: formData.get("comment"),
                   contactMethod: formData.get("contactMethod"),
-                  items: detailedItems.map(({ product, quantity }) => ({
+                  items: detailedItems.map(({ product }) => ({
                     title: product.title,
                     slug: product.slug,
                     category: product.category,
                     price: product.price,
-                    quantity,
+                    quantity: 1,
                   })),
                 }),
               });
@@ -130,13 +130,13 @@ export default function CheckoutPage() {
           <h2 className="font-serif text-3xl text-graphite">Ваши предметы</h2>
           <div className="mt-5 space-y-4">
             {detailedItems.length > 0 ? (
-              detailedItems.map(({ product, quantity }) => (
+              detailedItems.map(({ product }) => (
                 <div className="flex justify-between gap-4 text-sm" key={product.id}>
                   <span className="text-muted-text">
-                    {product.title} x {quantity}
+                    {product.title}
                   </span>
                   <span className="text-graphite">
-                    {formatPrice(product.price * quantity)}
+                    {formatPrice(product.price)}
                   </span>
                 </div>
               ))

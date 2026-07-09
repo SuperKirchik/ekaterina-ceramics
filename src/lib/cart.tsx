@@ -94,28 +94,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const detailedItems = items
       .map((item) => {
         const product = products.find((entry) => entry.id === item.productId);
-        return product ? { product, quantity: item.quantity } : null;
+        return product ? { product, quantity: 1 } : null;
       })
       .filter(Boolean) as Array<{ product: Product; quantity: number }>;
 
     return {
       items,
       detailedItems,
-      total: detailedItems.reduce(
-        (sum, item) => sum + item.product.price * item.quantity,
-        0,
-      ),
-      count: items.reduce((sum, item) => sum + item.quantity, 0),
+      total: detailedItems.reduce((sum, item) => sum + item.product.price, 0),
+      count: items.length,
       addItem: (productId) =>
         updateItems((current) => {
           const existing = current.find((item) => item.productId === productId);
-          if (existing) {
-            return current.map((item) =>
-              item.productId === productId
-                ? { ...item, quantity: item.quantity + 1 }
-                : item,
-            );
-          }
+          if (existing) return current;
           return [...current, { productId, quantity: 1 }];
         }),
       removeItem: (productId) =>
@@ -126,7 +117,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         updateItems((current) =>
           current.map((item) =>
             item.productId === productId
-              ? { ...item, quantity: Math.max(1, quantity) }
+              ? { ...item, quantity: 1 }
               : item,
           ),
         ),

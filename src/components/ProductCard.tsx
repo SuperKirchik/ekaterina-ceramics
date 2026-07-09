@@ -2,23 +2,7 @@ import Link from "next/link";
 import { Product, formatPrice } from "@/lib/data";
 import { fitClamp } from "@/lib/textFit";
 
-const singularCategories: Record<string, string> = {
-  "светильники": "светильник",
-  "вазы": "ваза",
-  "блюда": "блюдо",
-  "арт-объекты": "арт-объект",
-  "диффузоры": "диффузор",
-  "ароматы": "аромат",
-};
-
-function formatCategory(category: string) {
-  const key = category.toLowerCase();
-  return singularCategories[key] ?? category;
-}
-
 export function ProductCard({ product }: { product: Product }) {
-  const category = formatCategory(product.category);
-
   return (
     <article className="group min-w-0">
       <Link className="block min-w-0" href={`/product/${product.slug}`}>
@@ -40,12 +24,6 @@ export function ProductCard({ product }: { product: Product }) {
               >
                 {product.title}
               </h3>
-              <p
-                className="product-card-category mt-[clamp(0.2rem,0.35vw,0.4rem)] text-muted-text"
-                style={fitClamp(category, 1.24, 1.36, 1.64)}
-              >
-                {category}
-              </p>
             </div>
             <p className="whitespace-nowrap pt-[clamp(0.15rem,0.3vw,0.35rem)] text-[clamp(0.7rem,0.8vw,0.95rem)] font-medium text-graphite">
               {formatPrice(product.price)}

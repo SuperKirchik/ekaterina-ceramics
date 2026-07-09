@@ -26,7 +26,7 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
       <div className="overflow-hidden">
         <img
           alt={title}
-          className="mx-auto aspect-[1246/1661] max-h-[clamp(34rem,64vh,62rem)] w-auto max-w-full object-cover"
+          className="mx-auto aspect-square w-full object-cover"
           decoding="async"
           fetchPriority="high"
           src={selectedImage}
@@ -52,7 +52,7 @@ export function ProductGallery({ images, title }: ProductGalleryProps) {
             >
               <img
                 alt={title}
-                className="aspect-[1246/1661] w-[clamp(3.6rem,4.2vw,5rem)] object-cover"
+                className="aspect-square w-[clamp(3.6rem,4.2vw,5rem)] object-cover"
                 decoding="async"
                 loading="lazy"
                 src={image}

@@ -26,30 +26,73 @@ export default function Home() {
   return (
     <>
       <HeroDepth />
-      <section className="hidden">
-        <img
-          alt=""
-          className="absolute inset-0 h-[112%] w-full -translate-y-[6%] scale-105 object-cover"
-          decoding="async"
-          fetchPriority="high"
-          src="/hero-waterfall.png"
-        />
-        <div className="absolute inset-0 bg-[#26252a]/35" />
-        <div className="container-page relative flex min-h-[82vh] items-center justify-center pb-16 pt-28">
-          <div className="max-w-4xl text-center text-white fade-up">
-            <p className="eyebrow-text mb-5 uppercase">
-              <span className="block sm:inline">Интерьерная керамика</span>{" "}
-              <span className="block sm:inline">Екатерины Дроздовой</span>
+
+      <section className="content-auto bg-graphite py-[clamp(3rem,4.2vw,4.6rem)] text-surface">
+        <div className="container-page mx-auto grid max-w-[min(1080px,82vw)] grid-cols-[minmax(16rem,0.9fr)_1.1fr] items-center gap-[clamp(1.4rem,2.5vw,3rem)]">
+          <img
+            alt="Екатерина Дроздова"
+            className="mx-auto aspect-[4/5] w-full max-w-[clamp(24rem,28vw,42rem)] object-cover object-[center_35%]"
+            decoding="async"
+            loading="lazy"
+            src="/master-photo.png"
+          />
+          <div>
+            <p className="text-[clamp(0.95rem,1.1vw,1.35rem)] uppercase tracking-[0.24em] text-surface/65">
+              О мастере
             </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <Link
-                className="rounded-full border border-white bg-transparent px-9 py-4 text-base font-medium text-white transition hover:bg-white hover:text-background"
-                href="/catalog"
-              >
-                Каталог
-              </Link>
-            </div>
+            <h2 className="mt-[clamp(0.8rem,1.3vw,1.4rem)] font-serif">
+              Екатерина Дроздова
+            </h2>
+            <p className="mt-[clamp(0.8rem,1.3vw,1.4rem)] max-w-[44rem] text-[clamp(0.95rem,1.05vw,1.3rem)] leading-[1.28] text-surface/75">
+              Меня зовут Екатерина Дроздова. В своей мастерской я создаю
+              авторскую керамику ручной работы с 2024 года. Имея
+              математическое образование и врожденную тягу к структуре, я
+              всегда стремилась упорядочивать и гармонизировать пространство
+              вокруг себя. Керамика стала для меня способом создавать красоту
+              через форму, фактуру и материал. В своих работах я ищу баланс
+              между природой, человеком и собственным ощущением прекрасного,
+              создавая объекты, которые делают пространство живым и
+              наполненным.
+            </p>
           </div>
+        </div>
+      </section>
+
+      <section className="philosophy-bg-section content-auto py-[clamp(8rem,12vw,14rem)]">
+        <div className="container-page flex justify-end">
+          <div className="w-[30vw] min-w-[18rem] max-w-[34rem]">
+            <p className="text-[clamp(1rem,1.15vw,1.35rem)] uppercase tracking-[0.24em] text-white/75">
+              Философия
+            </p>
+            <p className="mt-[clamp(0.8rem,1.3vw,1.4rem)] font-serif leading-[0.98] text-white">
+              Моя миссия - создавать тихий диалог между человеком и
+              пространством.
+            </p>
+            <p className="mt-[clamp(1rem,1.6vw,1.8rem)] text-[clamp(1.05rem,1.22vw,1.55rem)] leading-[1.12] text-white/82">
+              Через шероховатость камня, глубину нейтральных оттенков и
+              гармонию ароматов напоминать о тепле земли, шепоте природы и
+              ценности простоты.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-page content-auto py-[clamp(4rem,7vw,8rem)]">
+        <p className="font-serif text-graphite">Процесс</p>
+        <div className="mt-[clamp(2rem,3.5vw,4rem)] grid grid-cols-3 gap-[clamp(1rem,2.2vw,2.8rem)]">
+          {processSteps.map((step, index) => (
+            <div className="border-t border-border pt-[clamp(1.2rem,2vw,2.4rem)]" key={step.title}>
+              <span className="text-[clamp(1rem,1.25vw,1.55rem)] leading-none text-muted-text">
+                0{index + 1}
+              </span>
+              <h3 className="mt-[clamp(1rem,1.6vw,1.8rem)] font-serif text-graphite">
+                {step.title}
+              </h3>
+              <p className="mt-[clamp(1rem,1.5vw,1.7rem)] text-[clamp(0.9rem,1vw,1.2rem)] leading-[1.32] text-muted-text">
+                {step.text}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -92,77 +135,6 @@ export default function Home() {
                 </p>
               </div>
             </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="philosophy-bg-section content-auto py-[clamp(8rem,12vw,14rem)]">
-        <div className="container-page flex justify-end">
-          <div className="w-[30vw] min-w-[18rem] max-w-[34rem]">
-            <p className="text-[clamp(1rem,1.15vw,1.35rem)] uppercase tracking-[0.24em] text-white/75">
-              Философия
-            </p>
-            <p className="mt-[clamp(0.8rem,1.3vw,1.4rem)] font-serif leading-[0.98] text-white">
-              Моя миссия - создавать тихий диалог между человеком и
-              пространством.
-            </p>
-            <p className="mt-[clamp(1rem,1.6vw,1.8rem)] text-[clamp(1.05rem,1.22vw,1.55rem)] leading-[1.12] text-white/82">
-              Через шероховатость камня, глубину нейтральных оттенков и
-              гармонию ароматов напоминать о тепле земли, шепоте природы и
-              ценности простоты.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="content-auto bg-graphite py-[clamp(3rem,4.2vw,4.6rem)] text-surface">
-        <div className="container-page mx-auto grid max-w-[min(1080px,82vw)] grid-cols-[minmax(16rem,0.9fr)_1.1fr] items-center gap-[clamp(1.4rem,2.5vw,3rem)]">
-          <img
-            alt="Екатерина Дроздова"
-            className="mx-auto aspect-[4/5] w-full max-w-[clamp(24rem,28vw,42rem)] object-cover object-[center_35%]"
-            decoding="async"
-            loading="lazy"
-            src="/master-photo.png"
-          />
-          <div>
-            <p className="text-[clamp(0.95rem,1.1vw,1.35rem)] uppercase tracking-[0.24em] text-surface/65">
-              О мастере
-            </p>
-            <h2 className="mt-[clamp(0.8rem,1.3vw,1.4rem)] font-serif">
-              Екатерина Дроздова
-            </h2>
-            <p className="mt-[clamp(0.8rem,1.3vw,1.4rem)] max-w-[44rem] text-[clamp(0.95rem,1.05vw,1.3rem)] leading-[1.28] text-surface/75">
-              Меня зовут Екатерина Дроздова. В своей мастерской я создаю
-              авторскую керамику ручной работы с 2024 года. Имея
-              математическое образование и врожденную тягу к структуре, я
-              всегда стремилась упорядочивать и гармонизировать пространство
-              вокруг себя. Керамика стала для меня способом создавать красоту
-              через форму, фактуру и материал. В своих работах я ищу баланс
-              между природой, человеком и собственным ощущением прекрасного,
-              создавая объекты, которые делают пространство живым и
-              наполненным.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="container-page content-auto py-[clamp(4rem,7vw,8rem)]">
-        <p className="font-serif text-graphite">
-          Процесс
-        </p>
-        <div className="mt-[clamp(2rem,3.5vw,4rem)] grid grid-cols-3 gap-[clamp(1rem,2.2vw,2.8rem)]">
-          {processSteps.map((step, index) => (
-            <div className="border-t border-border pt-[clamp(1.2rem,2vw,2.4rem)]" key={step.title}>
-              <span className="text-[clamp(1rem,1.25vw,1.55rem)] leading-none text-muted-text">
-                0{index + 1}
-              </span>
-              <h3 className="mt-[clamp(1rem,1.6vw,1.8rem)] font-serif text-graphite">
-                {step.title}
-              </h3>
-              <p className="mt-[clamp(1rem,1.5vw,1.7rem)] text-[clamp(0.9rem,1vw,1.2rem)] leading-[1.32] text-muted-text">
-                {step.text}
-              </p>
-            </div>
           ))}
         </div>
       </section>

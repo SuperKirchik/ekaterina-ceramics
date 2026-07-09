@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export function HeroDepth() {
   return (
-    <section className="hero-bg-section relative min-h-[clamp(34rem,82vh,62rem)] overflow-hidden">
-      <div className="container-page relative flex min-h-[clamp(34rem,82vh,62rem)] items-center justify-center pb-[clamp(3rem,4.5vw,5rem)] pt-[clamp(5rem,8vw,9rem)]">
+    <section className="hero-bg-section relative min-h-[clamp(24rem,57vh,43rem)] overflow-hidden">
+      <div className="container-page relative flex min-h-[clamp(24rem,57vh,43rem)] items-center justify-center pb-[clamp(2.1rem,3.15vw,3.5rem)] pt-[clamp(3.5rem,5.6vw,6.3rem)]">
         <div className="max-w-[min(64rem,78vw)] text-center text-white fade-up">
           <p className="eyebrow-text mb-5 uppercase">
             <span className="block sm:inline">Интерьерная керамика</span>{" "}
